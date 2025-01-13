@@ -7,7 +7,7 @@ export default function TabsLayout() {
   return (
     <Tabs>
       <Tabs.Screen
-        name="(dashboard)"
+        name="index"
         options={{
           title: "Dashboard",
           headerShown: false,
