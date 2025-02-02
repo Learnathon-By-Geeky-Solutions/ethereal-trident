@@ -36,6 +36,27 @@ export default function RootLayout() {
           headerTitleStyle: { fontSize: 20 },
         }}
       />
+      <Stack.Screen
+        name="settings/members"
+        options={{
+          title: "Members Settings",
+          headerTitleStyle: { fontSize: 20 },
+        }}
+      />
+      <Stack.Screen
+        name="settings/pin"
+        options={{
+          title: "Pin Settings",
+          headerTitleStyle: { fontSize: 20 },
+        }}
+      />
+      <Stack.Screen
+        name="settings/reminders"
+        options={{
+          title: "Reminders",
+          headerTitleStyle: { fontSize: 20 },
+        }}
+      />
     </Stack>
   );
 }
