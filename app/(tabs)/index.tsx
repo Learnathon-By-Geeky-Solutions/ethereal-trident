@@ -1,6 +1,7 @@
 import { Link } from "expo-router";
 import { PropsWithChildren } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { routes } from "@/lib/routes";
 
 export const CustomText = ({ children }: PropsWithChildren) => (
   <Text style={styles.customText}>{children}</Text>
@@ -10,7 +11,7 @@ export default function Dashboard() {
   return (
     <View style={styles.container}>
       <CustomText>Hello from Dashboard!!</CustomText>
-      <Link href={{ pathname: "expenses/all" }} style={styles.link}>
+      <Link href={routes.expenses.list} style={styles.link}>
         Go to Expenses
       </Link>
     </View>

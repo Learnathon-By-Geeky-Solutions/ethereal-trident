@@ -1,11 +1,11 @@
-import { useLocalSearchParams } from "expo-router";
+import { routes } from "@/lib/routes";
+import { Link } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function ItemDetails() {
-  const params = useLocalSearchParams();
+export default function Items() {
   return (
     <View style={styles.container}>
-      <Text style={styles.customText}>Hello from Item no {params.itemId}</Text>
+      <Text style={styles.customText}>Hello from Items List!!</Text>
     </View>
   );
 }

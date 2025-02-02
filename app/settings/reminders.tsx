@@ -1,11 +1,9 @@
-import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function ItemDetails() {
-  const params = useLocalSearchParams();
+export default function ReminderSettings() {
   return (
     <View style={styles.container}>
-      <Text style={styles.customText}>Hello from Item no {params.itemId}</Text>
+      <Text style={styles.customText}>Hello from Reminder Settings!!</Text>
     </View>
   );
 }
