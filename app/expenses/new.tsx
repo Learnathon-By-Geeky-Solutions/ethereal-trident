@@ -5,7 +5,7 @@ export default function NewExpense() {
   return (
     <View style={styles.container}>
       <Text style={styles.customText}>Hello from new expense page!!</Text>
-      <Link href={{ pathname: "items/new" }} style={styles.link}>
+      <Link href={"/items/new"} style={styles.link}>
         Create new Item
       </Link>
     </View>

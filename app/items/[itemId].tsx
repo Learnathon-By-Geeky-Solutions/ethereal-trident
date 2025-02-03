@@ -1,7 +1,7 @@
 import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Expense() {
+export default function ItemDetails() {
   const params = useLocalSearchParams();
   return (
     <View style={styles.container}>

@@ -5,7 +5,7 @@ export default function RootLayout() {
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen
-        name="expenses/all"
+        name="expenses/index"
         options={{ title: "All Expenses", headerTitleStyle: { fontSize: 20 } }}
       />
       <Stack.Screen

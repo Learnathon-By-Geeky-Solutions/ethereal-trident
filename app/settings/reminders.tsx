@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function PinSettings() {
+export default function ReminderSettings() {
   return (
     <View style={styles.container}>
-      <Text style={styles.customText}>Hello from Pin Settings!!</Text>
+      <Text style={styles.customText}>Hello from Reminder Settings!!</Text>
     </View>
   );
 }

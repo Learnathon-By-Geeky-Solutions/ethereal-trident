@@ -10,7 +10,7 @@ export default function Dashboard() {
   return (
     <View style={styles.container}>
       <CustomText>Hello from Dashboard!!</CustomText>
-      <Link href={{ pathname: "expenses/all" }} style={styles.link}>
+      <Link href={{ pathname: "/expenses" }} style={styles.link}>
         Go to Expenses
       </Link>
     </View>
