@@ -1,17 +1,18 @@
+import { routes } from "@/lib/routes";
 import { Link } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Items() {
   return (
     <View style={styles.container}>
-      <Link href={{ pathname: "items/new" }} style={styles.link}>
+      <Link href={routes.items.new} style={styles.link}>
         Create new Item
       </Link>
       <Text style={styles.customText}>Hello from Expenses!!</Text>
-      <Link href={{ pathname: "items/1" }} style={styles.link}>
+      <Link href={routes.items.detail(1)} style={styles.link}>
         Go to Item 1
       </Link>
-      <Link href={{ pathname: "items/2" }} style={styles.link}>
+      <Link href={routes.items.detail(2)} style={styles.link}>
         Go to Item 2
       </Link>
     </View>

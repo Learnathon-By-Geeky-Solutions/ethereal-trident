@@ -1,3 +1,4 @@
+import { routes } from "@/lib/routes";
 import { Link } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -5,13 +6,13 @@ export default function Settings() {
   return (
     <View style={styles.container}>
       <Text style={styles.customText}>Hello from Settings!!</Text>
-      <Link style={styles.link} href="/settings/members">
+      <Link style={styles.link} href={routes.settingsPages.members}>
         Go to Members Settings
       </Link>
-      <Link style={styles.link} href="/settings/pin">
+      <Link style={styles.link} href={routes.settingsPages.pin}>
         Go to Pins Settings
       </Link>
-      <Link style={styles.link} href="/settings/reminders">
+      <Link style={styles.link} href={routes.settingsPages.reminders}>
         Go to Reminders Settings
       </Link>
     </View>

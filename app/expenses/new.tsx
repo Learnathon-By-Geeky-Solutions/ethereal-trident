@@ -1,3 +1,4 @@
+import { routes } from "@/lib/routes";
 import { Link } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -5,7 +6,7 @@ export default function NewExpense() {
   return (
     <View style={styles.container}>
       <Text style={styles.customText}>Hello from new expense page!!</Text>
-      <Link href={"/items/new"} style={styles.link}>
+      <Link href={routes.items.new} style={styles.link}>
         Create new Item
       </Link>
     </View>
