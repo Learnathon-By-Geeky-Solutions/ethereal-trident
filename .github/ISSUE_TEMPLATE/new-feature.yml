@@ -16,8 +16,10 @@ body:
   - type: textarea
     id: rationale
     attributes:
-      label: It should be implemented because
-      placeholder: It will allow to do Y that is needed for Z
+      label: Acceptance Criteria
+      placeholder: It will be accepted if ...
+    validations:
+      required: true
   - type: textarea
     id: context
     attributes:

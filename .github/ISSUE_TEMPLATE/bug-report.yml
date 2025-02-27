@@ -39,6 +39,8 @@ body:
     attributes:
       label: What was the expected result?
       placeholder: I expected this to happen
+    validations:
+      required: true
   - type: textarea
     id: screenshots
     attributes:
