@@ -9,11 +9,18 @@ import {
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { Link } from "expo-router";
-import { useTheme, useLinkBuilder } from "@react-navigation/native";
+import { useTheme, useLinkBuilder, Route } from "@react-navigation/native";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { Route } from "@react-navigation/native";
 
 type Icon = keyof typeof MaterialCommunityIcons.glyphMap;
+
+const icons: { [key: string]: Icon } = {
+  index: "home-outline",
+  create: "plus",
+  members: "account-multiple-outline",
+  meals: "food-outline",
+  settings: "cog-outline",
+};
 
 export default function TabBar({
   state,
@@ -27,14 +34,6 @@ export default function TabBar({
   const cutoutEndX = cutoutStartX + cutoutWidth;
 
   const pathData = `M0,0 L${cutoutStartX},0 C${cutoutStartX + 10},${cutoutHeight} ${cutoutEndX - 10},${cutoutHeight} ${cutoutEndX},0 L${screenWidth},0 L${screenWidth},63 L0,63 Z`;
-
-  const icons: { [key: string]: Icon } = {
-    index: "home-outline",
-    create: "plus",
-    members: "account-multiple-outline",
-    meals: "food-outline",
-    settings: "cog-outline",
-  };
 
   const focusedName = state.routes[state.index].name;
 
@@ -67,57 +66,72 @@ export default function TabBar({
 
         <View style={styles.navItemsContainer}>
           <View style={styles.navItemsLeft}>
-            {routes.slice(0, 2).map((route: Route<string>) => {
-              const { options } = descriptors[route.key];
-              const label =
-                options.tabBarLabel !== undefined
-                  ? options.tabBarLabel
-                  : options.title !== undefined
-                    ? options.title
-                    : route.name;
-
-              const isFocused = focusedName === route.name;
-
-              return (
-                <TabLink
-                  key={route.key}
-                  icon={icons[route.name]}
-                  route={route}
-                  onPress={() => onLinkPressed(isFocused, route)}
-                  label={label as string}
-                  isFocused={isFocused}
-                />
-              );
-            })}
+            <HalfTabLinks
+              routes={routes.slice(0, 2)}
+              focusedName={focusedName}
+              descriptors={descriptors}
+              onLinkPressed={onLinkPressed}
+              navigation={navigation}
+            />
           </View>
 
           <View style={styles.navItemsRight}>
-            {routes.slice(2, 4).map((route: Route<string>) => {
-              const { options } = descriptors[route.key];
-              const label =
-                options.tabBarLabel !== undefined
-                  ? options.tabBarLabel.toString()
-                  : options.title !== undefined
-                    ? options.title
-                    : route.name;
-
-              const isFocused = focusedName === route.name;
-
-              return (
-                <TabLink
-                  key={route.key}
-                  icon={icons[route.name]}
-                  route={route}
-                  onPress={() => onLinkPressed(isFocused, route)}
-                  label={label}
-                  isFocused={isFocused}
-                />
-              );
-            })}
+            <HalfTabLinks
+              routes={routes.slice(2, 4)}
+              focusedName={focusedName}
+              descriptors={descriptors}
+              onLinkPressed={onLinkPressed}
+              navigation={navigation}
+            />
           </View>
         </View>
       </View>
     </View>
+  );
+}
+
+interface HalfTabLinksProps {
+  routes: Route<string>[];
+  focusedName: string;
+  descriptors: { [key: string]: any };
+  navigation: any;
+  onLinkPressed: (isFocused: boolean, route: Route<string>) => void;
+}
+
+function HalfTabLinks({
+  routes,
+  focusedName,
+  descriptors,
+  onLinkPressed,
+}: HalfTabLinksProps) {
+  return (
+    <>
+      {routes.map((route: Route<string>) => {
+        const { options } = descriptors[route.key];
+        let label = route.name;
+
+        if (options.title !== undefined) {
+          label = options.title;
+        }
+
+        if (options.tabBarLabel !== undefined) {
+          label = options.tabBarLabel.toString();
+        }
+
+        const isFocused = focusedName === route.name;
+
+        return (
+          <TabLink
+            key={route.key}
+            icon={icons[route.name]}
+            route={route}
+            onPress={() => onLinkPressed(isFocused, route)}
+            label={label}
+            isFocused={isFocused}
+          />
+        );
+      })}
+    </>
   );
 }
 
