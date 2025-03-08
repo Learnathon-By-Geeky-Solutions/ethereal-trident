@@ -88,19 +88,17 @@ export default function TabBar({
   );
 }
 
-interface HalfTabLinksProps {
-  routes: Route<string>[];
-  focusedName: string;
-  descriptors: { [key: string]: any };
-  onLinkPressed: (isFocused: boolean, route: Route<string>) => void;
-}
-
 function HalfTabLinks({
   routes,
   focusedName,
   descriptors,
   onLinkPressed,
-}: HalfTabLinksProps) {
+}: {
+  readonly routes: Route<string>[];
+  readonly focusedName: string;
+  readonly descriptors: { [key: string]: any };
+  readonly onLinkPressed: (isFocused: boolean, route: Route<string>) => void;
+}) {
   return (
     <>
       {routes.map((route: Route<string>) => {
@@ -139,11 +137,11 @@ function TabLink({
   isFocused,
   label,
 }: {
-  route: Route<string>;
-  onPress: () => void;
-  icon: Icon;
-  isFocused: boolean;
-  label: string;
+  readonly route: Route<string>;
+  readonly onPress: () => void;
+  readonly icon: Icon;
+  readonly isFocused: boolean;
+  readonly label: string;
 }) {
   const { buildHref } = useLinkBuilder();
   const { colors } = useTheme();
