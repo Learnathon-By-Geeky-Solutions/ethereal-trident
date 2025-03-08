@@ -71,7 +71,6 @@ export default function TabBar({
               focusedName={focusedName}
               descriptors={descriptors}
               onLinkPressed={onLinkPressed}
-              navigation={navigation}
             />
           </View>
 
@@ -81,7 +80,6 @@ export default function TabBar({
               focusedName={focusedName}
               descriptors={descriptors}
               onLinkPressed={onLinkPressed}
-              navigation={navigation}
             />
           </View>
         </View>
@@ -94,7 +92,6 @@ interface HalfTabLinksProps {
   routes: Route<string>[];
   focusedName: string;
   descriptors: { [key: string]: any };
-  navigation: any;
   onLinkPressed: (isFocused: boolean, route: Route<string>) => void;
 }
 
