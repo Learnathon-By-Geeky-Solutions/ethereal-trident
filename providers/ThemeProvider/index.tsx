@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { ThemeContext } from "@/providers/ThemeProvider/ThemeContext";
 import { lightTheme, darkTheme, Theme } from "@/lib/theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -16,8 +16,12 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         const storedTheme = await AsyncStorage.getItem("theme");
         if (storedTheme === "dark") {
           setTheme(darkTheme);
-        } else {
+        } else if (storedTheme === "light" || storedTheme === null) {
           setTheme(lightTheme);
+        } else {
+          console.warn("INVALID THEME VALUE DETECTED:", storedTheme);
+          setTheme(lightTheme);
+          await AsyncStorage.setItem("theme", "light");
         }
       } catch (error) {
         console.error("Error loading theme:", error);
@@ -27,7 +31,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     loadTheme();
   }, []);
 
-  const toggleTheme = async () => {
+  const toggleTheme = useCallback(async () => {
     const newTheme = theme === lightTheme ? darkTheme : lightTheme;
     setTheme(newTheme);
     try {
@@ -38,10 +42,15 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     } catch (error) {
       console.error("Error saving theme:", error);
     }
-  };
+  }, [theme]);
+
+  const contextValue = useMemo(
+    () => ({ theme, toggleTheme }),
+    [theme, toggleTheme],
+  );
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   );

@@ -15,6 +15,14 @@ export interface Theme {
   };
 }
 
+const baseSpacing = {
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 32,
+};
+
 export const lightTheme: Theme = {
   colors: {
     background: "#F4F4F5", // zinc-100
@@ -23,13 +31,7 @@ export const lightTheme: Theme = {
     secondaryAccent: "#1447e6", // blue-600
     fade: "#d4d4d8", // zinc-300
   },
-  spacing: {
-    xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
-    xl: 32,
-  },
+  spacing: baseSpacing,
 };
 
 export const darkTheme: Theme = {
@@ -40,11 +42,5 @@ export const darkTheme: Theme = {
     secondaryAccent: "#51a2ff", // blue-400
     fade: "#3f3f46", // zinc-500
   },
-  spacing: {
-    xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
-    xl: 32,
-  },
+  spacing: baseSpacing,
 };
