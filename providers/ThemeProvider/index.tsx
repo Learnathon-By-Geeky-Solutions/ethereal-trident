@@ -14,10 +14,12 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     const loadTheme = async () => {
       try {
         const storedTheme = await AsyncStorage.getItem("theme");
-        if (storedTheme === "dark") {
-          setTheme(darkTheme);
-        } else if (storedTheme === "light" || storedTheme === null) {
-          setTheme(lightTheme);
+        const isValidTheme = (
+          value: string | null,
+        ): value is "light" | "dark" => value === "light" || value === "dark";
+
+        if (isValidTheme(storedTheme)) {
+          setTheme(storedTheme === "dark" ? darkTheme : lightTheme);
         } else {
           console.warn("INVALID THEME VALUE DETECTED:", storedTheme);
           setTheme(lightTheme);
